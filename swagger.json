@@ -1,0 +1,430 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Description",
+        "version": "1.0.0",
+        "title": "ML Monitor"
+    },
+    "schemes": [
+        "https"
+    ],
+    "paths": {
+        "/infer": {
+            "post": {
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+					{
+						"in": "body",
+						"name": "Infer parameters",
+						"description": "Detect intent",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/InferParams"
+						}
+					}
+				],
+				"responses": {
+                    "200": {
+                        "description": "200 response",
+                        "schema": {
+                            "$ref": "#/definitions/InferResult"
+                        },
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "x-amazon-apigateway-integration": {
+                    "uri": "arn:aws:apigateway:eu-west-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-west-1:728226122160:function:ml-monitor-dev-infer/invocations",
+                    "httpMethod": "POST",
+                    "responses": {
+                        "default": {
+                            "statusCode": "200"
+                        }
+                    },
+                    "type": "aws_proxy"
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
+            "options": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "schema": {
+                            "$ref": "#/definitions/Empty"
+                        },
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "x-amazon-apigateway-integration": {
+                    "httpMethod": "OPTIONS",
+                    "type": "mock",
+                    "requestTemplates": {
+                        "application/json": "{\"statusCode\": 200}"
+                    },
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "headers": {
+                                "$ref": "#/definitions/HeadersDefinition"
+                            },
+                            "schema": {
+                                "$ref": "#/definitions/Empty"
+                            },
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'",
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+                            },
+                            "responseTemplates": {
+                                "application/json": "{\"statusCode\": 200}"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/train": {
+            "post": {
+                "produces": [
+                    "application/json"
+                ],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "Infer parameters",
+						"description": "Add or remove a sample and Train app",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/TrainParams"
+						}
+					}
+				],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "schema": {
+                            "$ref": "#/definitions/Empty"
+                        },
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "x-amazon-apigateway-integration": {
+                    "uri": "arn:aws:apigateway:eu-west-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-west-1:728226122160:function:ml-monitor-dev-infer/invocations",
+                    "httpMethod": "POST",
+                    "responses": {
+                        "default": {
+                            "statusCode": "200"
+                        }
+                    },
+                    "type": "aws_proxy"
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
+            "options": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "schema": {
+                            "$ref": "#/definitions/Empty"
+                        },
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "x-amazon-apigateway-integration": {
+                    "httpMethod": "OPTIONS",
+                    "type": "mock",
+                    "requestTemplates": {
+                        "application/json": "{\"statusCode\": 200}"
+                    },
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "headers": {
+                                "$ref": "#/definitions/HeadersDefinition"
+                            },
+                            "schema": {
+                                "$ref": "#/definitions/Empty"
+                            },
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'",
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+                            },
+                            "responseTemplates": {
+                                "application/json": "{\"statusCode\": 200}"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/slow-train": {
+            "post": {
+                "produces": [
+                    "application/json"
+                ],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "Infer parameters",
+						"description": "Trigger the slow train",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/SlowTrainParams"
+						}
+					}
+				],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "schema": {
+                            "$ref": "#/definitions/Empty"
+                        },
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "x-amazon-apigateway-integration": {
+					"defaultModelsExpandDepth": -1,
+                    "uri": "arn:aws:apigateway:eu-west-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-west-1:728226122160:function:ml-monitor-dev-infer/invocations",
+                    "httpMethod": "POST",
+                    "responses": {
+                        "default": {
+                            "statusCode": "200"
+                        }
+                    },
+                    "type": "aws_proxy"
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
+            "options": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "schema": {
+                            "$ref": "#/definitions/Empty"
+                        },
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "x-amazon-apigateway-integration": {
+					"defaultModelsExpandDepth": -1,
+                    "httpMethod": "OPTIONS",
+                    "type": "mock",
+                    "requestTemplates": {
+                        "application/json": "{\"statusCode\": 200}"
+                    },
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "headers": {
+                                "$ref": "#/definitions/HeadersDefinition"
+                            },
+                            "schema": {
+                                "$ref": "#/definitions/Empty"
+                            },
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'",
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+                            },
+                            "responseTemplates": {
+                                "application/json": "{\"statusCode\": 200}"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "api_key": {
+            "type": "apiKey",
+            "name": "x-api-key",
+            "in": "header"
+        }
+    },
+    "definitions": {
+        "HeadersDefinition": {
+            "Access-Control-Allow-Origin": {
+                "type": "string"
+            },
+            "Access-Control-Allow-Methods": {
+                "type": "string"
+            },
+            "Access-Control-Allow-Headers": {
+                "type": "string"
+            }
+        },
+        "Empty": {
+            "type": "object",
+            "title": "Empty Schema"
+        },
+		"InferParams": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string"
+                },
+                "model": {
+                    "type": "string"
+                },
+                "nlpProvider": {
+                    "type": "string"
+                }
+            }
+        },
+        "InferResult": {
+            "type": "object",
+            "properties": {
+                "intentName": {
+                    "type": "string"
+                },
+                "score": {
+                    "type": "string"
+                },
+                "nlpProvider": {
+                    "type": "string"
+                }
+            }
+        },
+        "TrainParams": {
+            "type": "object",
+            "properties": {
+                "texts": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "model": {
+                    "type": "string"
+                },
+                "nlpProvider": {
+                    "type": "string"
+                }
+            }
+        },
+        "SlowTrainParams": {
+            "type": "object",
+            "properties": {
+                "objects": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/SlowTrainIntentObject"
+                    }
+                },
+                "model": {
+                    "type": "string"
+                },
+                "nlpProvider": {
+                    "type": "string"
+                }
+            }
+        },
+        "SlowTrainIntentObject": {
+            "type": "object",
+            "properties": {
+                "intentName": {
+                    "type": "string"
+                },
+                "samples": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
